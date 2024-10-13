@@ -39,7 +39,7 @@ export const Experience = () => {
 
       <Sky distance={4500} sunPosition={[0.5, 1, 0.5]} />
 
-      <Physics debug>
+      <Physics >
         <CharacterController />
         <Map />
       </Physics>
