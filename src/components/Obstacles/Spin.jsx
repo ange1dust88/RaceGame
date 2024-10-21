@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-function Spin({ size, color, pos, bouncePower, rotSpeed}) {
+function Spin({ size, color, pos, bouncePower, rotSpeed, spinDirection = 1 }) { // Add spinDirection prop with a default value
   const spinRef = useRef(); 
 
   useFrame((_state, delta) => {
@@ -11,7 +11,7 @@ function Spin({ size, color, pos, bouncePower, rotSpeed}) {
       const curRotation = quat(spinRef.current.rotation());
       const incrementRotation = new THREE.Quaternion().setFromAxisAngle(
         new THREE.Vector3(0, 1, 0),
-        delta * rotSpeed
+        delta * rotSpeed * spinDirection // Adjust rotation based on spinDirection
       );
 
       curRotation.multiply(incrementRotation);
@@ -40,7 +40,7 @@ function Spin({ size, color, pos, bouncePower, rotSpeed}) {
       </RigidBody>
 
       {/* Center part */}
-      <RigidBody type="fixed" colliders ="hull" position={[pos[0], pos[1], pos[2]]} friction={0.5}>
+      <RigidBody type="fixed" colliders="hull" position={[pos[0], pos[1], pos[2]]} friction={0.5}>
         <mesh castShadow receiveShadow>
           <cylinderGeometry args={[0.15, 0.15, 0.5, 32]} />
           <meshStandardMaterial color="dimgray" />

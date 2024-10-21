@@ -4,13 +4,12 @@ import { useRef } from "react";
 import { CharacterController } from "./CharacterController";
 import Map from "./Map";
 // todo
-// physical components for map (Spinning Blades, Bounce Ball)
-// Map component 
-// UI
+// camera movement
+// music (idk)
+// skybox
 // collectables + timer 
 // game rules  
-// skybox
-// shadows
+// UI
 //
 export const Experience = () => {
   const shadowCameraRef = useRef();
@@ -39,8 +38,8 @@ export const Experience = () => {
 
       <Sky distance={4500} sunPosition={[0.5, 1, 0.5]} />
 
-      <Physics >
-        <CharacterController />
+      <Physics debug>
+        <CharacterController  pos = {[0, 1.4, 43]}/> {/*{[1, 21, 70.5]} END */}
         <Map />
       </Physics>
     </>

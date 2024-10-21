@@ -28,7 +28,7 @@ const lerpAngle = (start, end, t) => {
   return normalizeAngle(start + (end - start) * t);
 };
 
-export const CharacterController = () => {
+export const CharacterController = ({pos}) => {
   const { WALK_SPEED, RUN_SPEED, ROTATION_SPEED, JUMP_FORCE } = useControls(
     "Character Control",
     {
@@ -134,13 +134,13 @@ export const CharacterController = () => {
     }
   });
 
-  // Collision event handlers for detecting ground contact
+ 
   const onCollisionEnter = (other) => {
     if (other.rigidBodyObject && other.rigidBodyObject.userData.isGround) {
       setIsGrounded(true);
-      // If landing after falling, change to idle or landing animation
+      
       if (rb.current.linvel().y < 0) {
-        setAnimation("land"); // Use a landing animation if you have one
+        
       } else {
         setAnimation("idle");
       }
@@ -150,11 +150,9 @@ export const CharacterController = () => {
   const onCollisionExit = (other) => {
     if (other.rigidBodyObject && other.rigidBodyObject.userData.isGround) {
       setIsGrounded(false);
-      setAnimation("fall"); // Trigger fall animation if character leaves ground
+      setAnimation("fall"); 
     }
   };
-
-  // Optional fallback check for grounded state based on Y velocity
   useEffect(() => {
     const checkGrounded = () => {
       if (rb.current) {
@@ -164,7 +162,7 @@ export const CharacterController = () => {
         }
       }
     };
-    const interval = setInterval(checkGrounded, 100); // Check every 100ms
+    const interval = setInterval(checkGrounded, 100); 
     return () => clearInterval(interval);
   }, []);
 
@@ -175,10 +173,11 @@ export const CharacterController = () => {
       ref={rb}
       onCollisionEnter={onCollisionEnter}
       onCollisionExit={onCollisionExit}
+      position={pos}
     >
       <group ref={container}>
         <group ref={cameraTarget} position-z={1.5} />
-        <group ref={cameraPosition} position-y={4} position-z={-4} />
+        <group ref={cameraPosition} position-y={2.5} position-z={-4} />
         <group ref={character}>
           <Character scale={0.18} animation={animation} />
         </group>

@@ -12,7 +12,7 @@ export function Character({ animation, ...props }) {
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
-        <group name="fall_guys">
+        <group name="character">
           <primitive object={nodes._rootJoint} />
           <skinnedMesh
             name="body"
