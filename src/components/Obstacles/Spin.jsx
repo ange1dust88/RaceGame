@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-function Spin({ size, color, pos, bouncePower, rotSpeed, spinDirection = 1 }) { // Add spinDirection prop with a default value
+function Spin({ size, color, pos, bouncePower, rotSpeed, spinDirection = 1 }) { 
   const spinRef = useRef(); 
 
   useFrame((_state, delta) => {
@@ -11,7 +11,7 @@ function Spin({ size, color, pos, bouncePower, rotSpeed, spinDirection = 1 }) { 
       const curRotation = quat(spinRef.current.rotation());
       const incrementRotation = new THREE.Quaternion().setFromAxisAngle(
         new THREE.Vector3(0, 1, 0),
-        delta * rotSpeed * spinDirection // Adjust rotation based on spinDirection
+        delta * rotSpeed * spinDirection 
       );
 
       curRotation.multiply(incrementRotation);

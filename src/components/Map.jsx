@@ -7,6 +7,7 @@ import RockSpawner from './Obstacles/RockSpawner';
 import BreakingBlocks from './Obstacles/BreakingBlocks';
 import InclinedPlane from './Obstacles/InclinedPlane';
 import Glass from './Obstacles/Glass';
+import Finish from './Obstacles/Finish';
 
 
 function Map() {
@@ -23,6 +24,7 @@ function Map() {
       <Glass pos={[-8, 25, 63.95]} args={[4, 60, 0.1]} />
       <Glass pos={[-10.05, 25, 73]} args={[0.1, 60, 18]} />
       <Glass pos={[0, 25, 82.05]} args={[20, 60, 0.1]} />
+
 
 
 
@@ -66,7 +68,7 @@ function Map() {
 
       {/*   location n3: Spin */}
       <Platform pos={[0, 1.1, 43]} args={[12, 2, 6]} color ={'springgreen'} />
-      <Platform pos={[0, -0, 51]} args={[12, 2, 14]} color ={'yellow'} />
+      <Platform pos={[0, -0, 52]} args={[12, 2, 12]} color ={'yellow'} />
       <Spin rotSpeed ={6} size={3} color={'tomato'} pos={[-4, 3, 48]} bouncePower={5}/>
       <Spin rotSpeed ={5.5} size={3} color={'tomato'} pos={[-4, 3, 52]} bouncePower={5}/>
       <Spin rotSpeed ={6.5} size={3} color={'tomato'} pos={[-4, 3, 56]} bouncePower={5}/>
@@ -141,6 +143,9 @@ function Map() {
 
 
       <BreakingBlocks pos = {[0, 21, 58.5]} size = {[2, 2 ,0.15,32]} breakable ={false} color ={'yellow'}/> 
+
+      <Finish  pos = {[0, 22, 58.5]}/>
+
 
 
 

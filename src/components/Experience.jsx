@@ -1,25 +1,19 @@
 import { Environment, OrthographicCamera, Sky } from "@react-three/drei";
-import { Physics } from "@react-three/rapier";
 import { useRef } from "react";
+import { Physics } from "@react-three/rapier";
 import { CharacterController } from "./CharacterController";
 import Map from "./Map";
-// todo
-// camera movement
-// music (idk)
-// skybox
-// collectables + timer 
-// game rules  
-// UI
-//
-export const Experience = () => {
+import SkyBox from "./Skybox.jsx";
+
+export const Experience = ({ timerStarted, onFinish }) => {
   const shadowCameraRef = useRef();
 
   return (
     <>
-      <Environment preset= "city"/>
-
+      <Environment preset="city" />
+      <SkyBox />
       <directionalLight
-        intensity={1} 
+        intensity={1}
         castShadow
         position={[-15, 10, 15]}
         shadow-mapSize-width={2048}
@@ -36,11 +30,9 @@ export const Experience = () => {
         />
       </directionalLight>
 
-      <Sky distance={4500} sunPosition={[0.5, 1, 0.5]} />
-
-      <Physics debug>
-        <CharacterController  pos = {[0, 1.4, 43]}/> {/*{[1, 21, 70.5]} END */}
-        <Map />
+      <Physics>
+        <CharacterController pos={[0, 0.5, -1.5]} timerStarted={timerStarted} onFinish = {onFinish} />
+        <Map/>
       </Physics>
     </>
   );

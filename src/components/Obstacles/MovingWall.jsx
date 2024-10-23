@@ -12,26 +12,22 @@ function MovingWall({ pos, args, speed, color, startPosZ, endPosZ }) {
       const currentPos = wallRef.current.translation(); 
       let newPositionZ = currentPos.z + directionZ * speed * oscillationSpeed;
 
-      // Проверка границ и изменение направления
+
       if (newPositionZ >= endPosZ) {
-        newPositionZ = endPosZ; // Устанавливаем на максимальное значение
-        setDirectionZ(-1); // Меняем направление
-        console.log(`Changing direction to -1 at ${newPositionZ}`);
+        newPositionZ = endPosZ; 
+        setDirectionZ(-1); 
+
       } else if (newPositionZ <= startPosZ) {
-        newPositionZ = startPosZ; // Устанавливаем на минимальное значение
-        setDirectionZ(1); // Меняем направление
-        console.log(`Changing direction to 1 at ${newPositionZ}`);
+        newPositionZ = startPosZ; 
+        setDirectionZ(1); 
       }
 
-      // Обновление позиции
       wallRef.current.setNextKinematicTranslation({ 
         x: currentPos.x, 
         y: currentPos.y, 
         z: newPositionZ 
       });
       
-      // Логирование текущего положения и нового положения
-      console.log(`Current Position Z: ${currentPos.z}, New Position Z: ${newPositionZ}, Direction: ${directionZ}`);
     }
   });
 
